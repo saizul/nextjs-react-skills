@@ -1,0 +1,27 @@
+{
+  "name": "nextjs-react-skills",
+  "description": "Practical Agent Skills for Next.js App Router and React developers.",
+  "owner": {
+    "name": "Saizul Amin",
+    "url": "https://github.com/saizul"
+  },
+  "plugins": [
+    {
+      "name": "nextjs-react-skills",
+      "source": "./",
+      "description": "App Router patterns, SEO metadata, Server Action security, performance, env vars, accessibility, testing and self-hosting for Next.js and React.",
+      "category": "development",
+      "tags": ["nextjs", "react", "app-router", "seo", "security", "performance", "accessibility", "testing", "docker"],
+      "skills": [
+        "./skills/nextjs-app-router-patterns",
+        "./skills/nextjs-seo-metadata",
+        "./skills/server-actions-security",
+        "./skills/react-performance-review",
+        "./skills/nextjs-env-config",
+        "./skills/react-accessibility-review",
+        "./skills/react-testing",
+        "./skills/nextjs-deploy-selfhost"
+      ]
+    }
+  ]
+}

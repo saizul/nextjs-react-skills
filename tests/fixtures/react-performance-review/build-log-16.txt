@@ -1,0 +1,14 @@
+   ▲ Next.js 16.0.0 (Turbopack)
+
+ ✓ Compiled successfully in 615ms
+ ✓ Finished TypeScript in 1114ms
+ ✓ Collecting page data in 208ms
+ ✓ Generating static pages in 239ms
+ ✓ Finalizing page optimization in 5ms
+
+Route (app)
+┌ ○ /_not-found
+└ ƒ /products/[id]
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

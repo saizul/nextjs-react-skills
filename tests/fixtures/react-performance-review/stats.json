@@ -1,0 +1,52 @@
+{
+  "assets": [
+    {
+      "name": "static/chunks/app/editor/page-1a2b3c.js",
+      "size": 640000
+    },
+    {
+      "name": "static/chunks/main-app-9f8e7d.js",
+      "size": 52000
+    },
+    {
+      "name": "static/css/app.css",
+      "size": 900000
+    }
+  ],
+  "modules": [
+    {
+      "name": "./node_modules/moment/moment.js",
+      "size": 60000
+    },
+    {
+      "name": "./node_modules/moment/locale/de.js",
+      "size": 9000
+    },
+    {
+      "name": "./node_modules/lodash/lodash.js",
+      "size": 72000
+    },
+    {
+      "name": "./node_modules/some-lib/node_modules/lodash/lodash.js",
+      "size": 72000
+    },
+    {
+      "name": "./node_modules/react-dom/cjs/react-dom-client.production.js",
+      "size": 180000
+    },
+    {
+      "name": "./app/editor/page.tsx + 3 modules (concatenated)",
+      "size": 12000,
+      "modules": [
+        {
+          "name": "./node_modules/chart.js/dist/chart.js",
+          "size": 200000
+        }
+      ]
+    },
+    {
+      "name": "./src/utils/format.ts",
+      "size": 800
+    }
+  ]
+}

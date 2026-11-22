@@ -1,0 +1,14 @@
+{
+  "name": "nextjs-react-skills",
+  "displayName": "Next.js & React Skills",
+  "version": "0.1.0",
+  "description": "Agent Skills for Next.js (App Router) and React: server/client boundaries and caching, SEO metadata, Server Action security, performance and bundle size, environment variables, accessibility, testing, and self-hosting with Docker and nginx.",
+  "author": {
+    "name": "Saizul Amin",
+    "url": "https://github.com/saizul"
+  },
+  "homepage": "https://github.com/saizul/nextjs-react-skills",
+  "repository": "https://github.com/saizul/nextjs-react-skills",
+  "license": "MIT",
+  "keywords": ["nextjs", "react", "app-router", "server-components", "server-actions", "seo", "accessibility", "testing", "performance", "docker"]
+}

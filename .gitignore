@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Release artifacts (built by .github/workflows/release.yml)
+dist/
+
+# Never commit real environment files (test fixtures under tests/fixtures are fake and kept)
+/.env*
+!/.env.example
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
