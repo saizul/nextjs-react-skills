@@ -6,6 +6,11 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `nextjs-env-config`: `env_audit.py` reports ENV012 when the same key is assigned twice in one
+  `.env*` file (only the last value is used), with the line of each assignment.
+
 ## [0.1.0] - 2026-11-22
 
 ### Added

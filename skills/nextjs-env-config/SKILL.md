@@ -41,7 +41,8 @@ Paths below are relative to this skill's folder (in Claude Code: `${CLAUDE_SKILL
    ENV003 secret-looking NEXT_PUBLIC_ name, ENV004 NODE_ENV in a file, ENV005 dynamic or
    destructured process.env in client code, ENV006 server variable in a Client Component,
    ENV007/ENV008 .env.example drift, ENV009 no .env.example, ENV010 next.config `env`,
-   ENV011 NEXT_PUBLIC_ variable missing from the Dockerfile build.
+   ENV011 NEXT_PUBLIC_ variable missing from the Dockerfile build, ENV012 duplicate key in one
+   env file (the last assignment wins silently).
 2. **Treat any exposed secret as compromised.** If ENV002/ENV003/ENV010 (high) hit a real
    credential that has been deployed or committed, tell the user to rotate it at the provider
    now; renaming the variable does not un-leak it. Do not print or paste the value.

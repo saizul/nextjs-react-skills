@@ -11,6 +11,7 @@ Reads .env* files (names only; values are never printed), next.config.*, Dockerf
   * variables used in code but missing from .env.example, and vice versa
   * NEXT_PUBLIC_ variables a Dockerfile does not pass at build time (ARG)
   * NODE_ENV set in a .env file
+  * the same key defined twice in one .env file (the later line silently wins)
 
 Read-only, offline. Exit codes: 0 = nothing at or above --fail-on, 1 = findings, 2 = usage error.
 """
@@ -189,6 +190,25 @@ def parse_env_file(text: str) -> dict[str, str]:
     return out
 
 
+def duplicate_keys(text: str) -> list[tuple[str, int, int]]:
+    """Return (key, first_line, repeat_line) for every key assigned more than once."""
+    seen: dict[str, int] = {}
+    dups = []
+    for lineno, raw in enumerate(text.splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        line = line[7:].strip() if line.startswith("export ") else line
+        if "=" not in line:
+            continue
+        key = line.split("=", 1)[0].strip()
+        if key in seen:
+            dups.append((key, seen[key], lineno))
+        else:
+            seen[key] = lineno
+    return dups
+
+
 def gitignore_patterns(root: Path) -> list[str]:
     path = root / ".gitignore"
     if not path.is_file():
@@ -220,7 +240,19 @@ def audit(root: Path) -> list[dict]:
     has_example = False
     patterns = gitignore_patterns(root)
     for path in env_files:
-        values = parse_env_file(read_text(path))
+        text = read_text(path)
+        values = parse_env_file(text)
+        for key, first, again in duplicate_keys(text):
+            findings.append(
+                finding(
+                    "low",
+                    "ENV012",
+                    path.name,
+                    again,
+                    f"{key} is defined again (first on line {first}); only the last value is used",
+                    "keep one assignment per key",
+                )
+            )
         if EXAMPLE_FILE.match(path.name):
             has_example = True
             example_keys |= set(values)

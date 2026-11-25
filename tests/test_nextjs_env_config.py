@@ -109,3 +109,19 @@ def test_committed_env_file_severity(tmp_path):
     (tmp_path / ".env.test.local").write_text("TOKEN_FOR_TESTS=x\n")
     sev = {f["file"]: f["severity"] for f in mod.audit(tmp_path) if f["rule"] == "ENV001"}
     assert sev == {".env.production": "low", ".env": "medium", ".env.test.local": "high"}
+
+
+def test_duplicate_keys_helper():
+    text = "A=1\n# A=commented\nB=2\nexport A=3\nB=4\n"
+    assert mod.duplicate_keys(text) == [("A", 1, 4), ("B", 3, 5)]
+
+
+def test_duplicate_key_in_env_file(tmp_path):
+    (tmp_path / ".gitignore").write_text(".env*\n")
+    (tmp_path / ".env.local").write_text("API_URL=a\nAPI_URL=b\n")
+    found = [f for f in mod.audit(tmp_path) if f["rule"] == "ENV012"]
+    assert len(found) == 1
+    assert found[0]["file"] == ".env.local"
+    assert found[0]["line"] == 2
+    assert found[0]["severity"] == "low"
+    assert "=a" not in found[0]["message"] and "=b" not in found[0]["message"]
